@@ -117,14 +117,14 @@ function parseCSeq(d) {
 
 function parseAuthHeader(d) {
   var r1 = applyRegex(/([^\s]*)\s+/g, d);
-  if (r1.length < 2) {
+  if (!r1) {
     console.log('Invalid format for auth header: ' + d);
     return {};
   }
   var a = {scheme: r1[1]};
 
   var r2 = applyRegex(/([^\s,"=]*)\s*=\s*([^\s,"]+|"[^"\\]*(?:\\.[^"\\]*)*")\s*/g, d);
-  if (r2.length < 3) {
+  if (!r2) {
     console.log('Invalid format for auth header: ' + d);
     return a;
   }
